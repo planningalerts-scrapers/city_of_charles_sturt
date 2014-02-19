@@ -3,11 +3,11 @@ require 'mechanize'
 
 agent = Mechanize.new
 
-url = 'http://www3.marrickville.nsw.gov.au/ePropertyProd/P1/PublicNotices/AllPublicNotices.aspx?r=$P1.WEBGUEST&f=$P1.ESB.PUBNOTAL.ENQ'
+url = 'https://eproperty.charlessturt.sa.gov.au/eProperty/P1/PublicNotices/AllPublicNotices.aspx?r=P1.WEBGUEST&f=%24P1.ESB.PUBNOTAL.ENQ'
 page = agent.get(url)
 
-base_info_url = 'http://www3.marrickville.nsw.gov.au/ePropertyProd/P1/PublicNotices/PublicNoticeDetails.aspx?r=$P1.WEBGUEST&f=$P1.ESB.PUBNOT.VIW&ApplicationId='
-comment_url = 'http://www.marrickville.nsw.gov.au/planning/da/comment.html'
+base_info_url = 'https://eproperty.charlessturt.sa.gov.au/eProperty/P1/PublicNotices/PublicNoticeDetails.aspx?r=P1.WEBGUEST&f=%24P1.ESB.PUBNOT.VIW&ApplicationId='
+comment_url = 'mailto:council@charlessturt.sa.gov.au'
 
 (page/'//*[@id="ctl00_Content_cusApplicationResultsGrid_pnlCustomisationGrid"]').search('table').each do |t|
   closing_date = t.search('td')[7].inner_text
