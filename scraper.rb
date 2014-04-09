@@ -2,6 +2,7 @@ require 'scraperwiki'
 require 'mechanize'
 
 agent = Mechanize.new
+agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
 url = 'https://eproperty.charlessturt.sa.gov.au/eProperty/P1/PublicNotices/AllPublicNotices.aspx?r=P1.WEBGUEST&f=%24P1.ESB.PUBNOTAL.ENQ'
 page = agent.get(url)
