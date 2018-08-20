@@ -23,7 +23,7 @@ async function initializeDatabase() {
     return new Promise((resolve, reject) => {
         let database = new sqlite3.Database("data.sqlite");
         database.serialize(() => {
-            database.run("create table if not exists [data] ([council_reference] text primary key, [address] text, [description] text, [info_url] text, [comment_url] text, [date_scraped] text, [date_received] text, [on_notice_from] text, [on_notice_to] text)");
+            database.run("create table if not exists [data] ([council_reference] text primary key, [description] text, [on_notice_to] text, [address] text, [info_url] text, [comment_url] text, [date_scraped] text)");
             resolve(database);
         });
     });
@@ -33,17 +33,15 @@ async function initializeDatabase() {
 
 async function insertRow(database, developmentApplication) {
     return new Promise((resolve, reject) => {
-        let sqlStatement = database.prepare("insert or ignore into [data] values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        let sqlStatement = database.prepare("insert or ignore into [data] values (?, ?, ?, ?, ?, ?, ?)");
         sqlStatement.run([
             developmentApplication.applicationNumber,
-            developmentApplication.address,
             developmentApplication.description,
+            developmentApplication.onNoticeToDate,
+            developmentApplication.address,
             developmentApplication.informationUrl,
             developmentApplication.commentUrl,
-            developmentApplication.scrapeDate,
-            null,
-            null,
-            developmentApplication.onNoticeToDate
+            developmentApplication.scrapeDate
         ], function(error, row) {
             if (error) {
                 console.log(error);
