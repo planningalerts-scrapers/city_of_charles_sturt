@@ -5,7 +5,7 @@ File.delete("./data.sqlite") if File.exist?("./data.sqlite")
 
 system("node scraper.js")
 
-results_other = ScraperWiki.select("* from data order by council_reference")
+results_other = ScraperWiki.select("council_reference, address, description, info_url, date_scraped from data order by council_reference")
 results_other = results_other.map do |result|
   result.delete("id")
   result
@@ -20,7 +20,7 @@ File.delete("./data.sqlite") if File.exist?("./data.sqlite")
 
 system("bundle exec ruby scraper.rb")
 
-results_ruby = ScraperWiki.select("* from data order by council_reference")
+results_ruby = ScraperWiki.select("council_reference, address, description, info_url, date_scraped, date_received from data order by council_reference")
 File.open("results_ruby.yml", "w") do |f|
   f.write(results_ruby.to_yaml)
 end
