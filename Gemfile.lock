@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/planningalerts-scrapers/technology_one_scraper.git
-  revision: 0212d0cc1614fa65a36fc1e2c8021efb5d4e5fd9
+  revision: 604c7cfc5763ce8d6a271b1becd1c53a6b9b271d
   specs:
     technology_one_scraper (0.1.0)
       activesupport
